@@ -35,16 +35,18 @@ public class Libro {
     public Libro(){}
 
     public Libro(DatosLibro libro){
-        this.idLibroApi = libro.idLibroApi();
-        this.titulo= libro.titulo();
-        this.numeroDescargas= libro.numeroDescargas();
-        this.idiomas=libro.idiomas();
-        this.autors=new ArrayList<>();
-        for(DatosAutor e : libro.autors()){
-            //this.autors.add(new Autor(e));
-            Autor autor = new Autor(e);
-            autor.setLibro(this);
-            this.autors.add(autor);
+        if(libro!=null){
+            this.idLibroApi = libro.idLibroApi();
+            this.titulo= libro.titulo();
+            this.numeroDescargas= libro.numeroDescargas();
+            this.idiomas=libro.idiomas();
+            this.autors=new ArrayList<>();
+            for(DatosAutor e : libro.autors()){
+                //this.autors.add(new Autor(e));
+                Autor autor = new Autor(e);
+                autor.setLibro(this);
+                this.autors.add(autor);
+            }
         }
     }
 

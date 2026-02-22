@@ -2,6 +2,7 @@ package com.example.LiterLura.API;
 
 import com.example.LiterLura.DTO.DatosLibro;
 import com.example.LiterLura.DTO.DatosRespuesta;
+import com.example.LiterLura.Models.Libro;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -41,8 +42,8 @@ public class Call {
         DatosRespuesta respuesta =mapper.readValue(response.body(), DatosRespuesta.class);
             return respuesta.libros().get(0);
 
-        }catch (JsonProcessingException e){
-            System.out.println(e.getMessage());
+        }catch (JsonProcessingException | IndexOutOfBoundsException e){
+            //System.out.println(e.getMessage());
         }
 
         return null;

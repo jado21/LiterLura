@@ -6,7 +6,11 @@ import com.example.LiterLura.Models.Libro;
 import com.example.LiterLura.Repository.AutorRepository;
 import com.example.LiterLura.Repository.LibroRepository;
 
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Service {
 
@@ -23,6 +27,11 @@ public class Service {
 
         nombreLibro = nombreLibro.replace(" ", "%20");
         Libro libro = new Libro(api.consultarLibro(nombreLibro));
+
+        if(libro.getIdLibroApi()==null){
+            System.out.println("No se encontro el libro");
+            return;
+        }
 
         if(libroRepository.existsByIdLibroApi(libro.getIdLibroApi())){
             System.out.println("Libro Ya Registrado");
@@ -77,5 +86,32 @@ public class Service {
                 );
     }
 
+    public void librosPorIdioma(String idioma){
+        Map<String,String> config = new HashMap<>();
+        config.put("en","Ingles");
+        config.put("es","Español");
+        System.out.println("Libros "+config.get(idioma));
+        List<Libro> libros = libroRepository.findByIdiomasContaining(idioma);
+        libros.forEach(leb -> System.out.println("-> "+leb.getTitulo()));
+
+        if(libros.isEmpty()){
+            System.out.println("No tenemos libros en ese idioma");
+        }
+    }
+
+    public void librosMasDescargados(){
+        List<Libro> libros = libroRepository.findAll();
+        List<Libro> top10 = libros.stream()
+                .sorted(Comparator.comparing(Libro::getNumeroDescargas).reversed())
+                .limit(10)
+                .collect(Collectors.toList());
+
+        System.out.println("Libros Mas Descargados : ");
+        top10.forEach(lib ->
+                System.out.println("*. "+lib.getTitulo() + "/ Descargas: "+lib.getNumeroDescargas())
+        );
+
+
+    }
 }
                                 

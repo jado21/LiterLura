@@ -32,11 +32,13 @@ public class LiterLuraApplication implements CommandLineRunner {
 
 		char opc=' ';
 		do{
-			System.out.println("Tenemos la siguientes opciones:");
+			System.out.println("Tenemos las siguientes opciones:");
 			System.out.println("1) Buscar libro por Titutlo");
 			System.out.println("2) Listar libros Registrados");
 			System.out.println("3) Lista de Autores");
 			System.out.println("4) Lista de Autores Vivos en un Año Determinado");
+			System.out.println("5) Lista de Libros por Idioma");
+			System.out.println("6) Top 10 Libros Mas Descargados");
 			System.out.println();
 			System.out.println("0) SALIR");
 			System.out.println();
@@ -63,6 +65,19 @@ public class LiterLuraApplication implements CommandLineRunner {
 					cin.nextLine();
 					year=cin.nextInt();
 					service.listaDeAutoresVivosEnUnDeterminadoAnio(year);
+					break;
+				case '5':
+					System.out.println("Libros Segun Idioma escribe:");
+					System.out.println("EN -> English");
+					System.out.println("ES -> Español");
+					System.out.print("Opcion elegida -> ");
+					cin.nextLine();
+					String alt = cin.nextLine();
+					alt=alt.toLowerCase();
+					service.librosPorIdioma(alt);
+					break;
+				case '6':
+					service.librosMasDescargados();
 					break;
 				case '0':
 					break;
