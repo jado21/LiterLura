@@ -1,1 +1,16 @@
-Start
+CONSULTING BOOK SHELTER
+
+Description:
+This projecty was made with the porpuse to apply the knowledge adquire through attented lessons. Mainly, We focus in devolping through JAVA language.
+This code uses a free API, called Gutendex, API that allows us to consult a great variety of open source books. Also, we implemented a MENU to help the user
+to interact with the software. We are using PostgreSQL to save the data that were consulted previously, thanks to Gutendex
+
+Functions:
+To resume, the program essentially has 6 functions that can be seen in the menu:
+1. To consult any book by title : In this function we create a connection to the Gutendex API to recieve the proper information about the book solicitated. We also made use of concepts like HttpClient and JSON to manipulate the data
+2. To list all books: We make use JpaRepository , a tool provided by Maven repository that helps us to save , get and delete data from our database efficiently and quickly
+3. To list all authors
+4. To get book authors in a determinated year
+5. To get a list of books by the language
+6. To get the most downloaded books
+
